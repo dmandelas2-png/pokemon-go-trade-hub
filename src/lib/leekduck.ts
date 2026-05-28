@@ -27,7 +27,7 @@ export async function fetchCurrentEvents(): Promise<LeekDuckEvent[]> {
   if (cached) return cached;
 
   try {
-    const response = await fetch(${LEEKDUCK_BASE}/events/, {
+    const response = await fetch(`${LEEKDUCK_BASE}/events/`, {
       next: { revalidate: 1800 },
     });
     const html = await response.text();
@@ -45,7 +45,7 @@ export async function fetchRaidBosses(): Promise<LeekDuckRaidBoss[]> {
   if (cached) return cached;
 
   try {
-    const response = await fetch(${LEEKDUCK_BASE}/boss/, {
+    const response = await fetch(`${LEEKDUCK_BASE}/boss/`, {
       next: { revalidate: 1800 },
     });
     const html = await response.text();
@@ -77,7 +77,7 @@ function parseEventsFromHTML(html: string): LeekDuckEvent[] {
         name: title[1].replace(/<[^>]*>/g, '').trim(),
         eventType: 'event',
         heading: title[1].replace(/<[^>]*>/g, '').trim(),
-        link: link ? ${LEEKDUCK_BASE} : '',
+        link: link ? `${LEEKDUCK_BASE}` : '',
         image: img ? img[1] : '',
         start: new Date().toISOString(),
         end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),

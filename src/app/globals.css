@@ -70,7 +70,7 @@
   }
 
   .pixel-btn-secondary {
-    @apply pixel-btn bg-pixel-accent border-pixel-highlight;
+    @apply px-6 py-3 font-pixel text-xs uppercase tracking-wider bg-pixel-accent text-white border-2 border-pixel-highlight active:translate-x-[2px] active:translate-y-[2px] transition-all duration-100;
     @apply hover:bg-pixel-highlight hover:text-white;
   }
 

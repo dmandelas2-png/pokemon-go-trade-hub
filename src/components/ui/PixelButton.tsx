@@ -39,7 +39,7 @@ export default function PixelButton({
 
   return (
     <button
-      className={${baseClasses}    }
+      className={`${baseClasses}`}
       disabled={disabled || loading}
       style={{ boxShadow: '4px 4px 0px rgba(0,0,0,0.5)' }}
       {...props}

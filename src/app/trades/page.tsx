@@ -211,13 +211,13 @@ export default function TradesPage() {
                   <div className="bg-pixel-dark rounded p-3">
                     <p className="text-xs text-gray-500 mb-1">Offering</p>
                     <p className="font-pixel text-sm text-white">{trade.offering}</p>
-                    <span className={`text-xs ${getTypeColor(trade.offeringType)}`}>{trade.offeringType}</span>
+                    <span className={`text-xs ${getTeamColor(trade.offeringType)}`}>{trade.offeringType}</span>
                   </div>
                   <div className="text-center text-pixel-gold font-pixel">{"\u{1F501}"}</div>
                   <div className="bg-pixel-dark rounded p-3">
                     <p className="text-xs text-gray-500 mb-1">Looking For</p>
                     <p className="font-pixel text-sm text-white">{trade.lookingFor}</p>
-                    <span className={`text-xs ${getTypeColor(trade.lookingForType)}`}>{trade.lookingForType}</span>
+                    <span className={`text-xs ${getTeamColor(trade.lookingForType)}`}>{trade.lookingForType}</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-4 pt-3 border-t border-pixel-accent">
@@ -233,6 +233,7 @@ export default function TradesPage() {
           })}
         </div>
       )}
+    </div>
     </div>
   );
 }
