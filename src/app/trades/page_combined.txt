@@ -1,0 +1,209 @@
+﻿'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+
+interface Trade {
+  id: number;
+  trainerName: string;
+  team: 'mystic' | 'valor' | 'instinct';
+  offering: string;
+  offeringType: string;
+  lookingFor: string;
+  lookingForType: string;
+  status: 'open' | 'pending' | 'completed';
+  postedDate: string;
+}
+
+const sampleTrades: Trade[] = [
+  {
+    id: 1,
+    trainerName: 'TrainerAsh',
+    team: 'valor',
+    offering: 'Shiny Charizard',
+    offeringType: 'Fire',
+    lookingFor: 'Shiny Mewtwo',
+    lookingForType: 'Psychic',
+    status: 'open',
+    postedDate: '2026-05-26',
+  },
+  {
+    id: 2,
+    trainerName: 'MistyWater',
+    team: 'mystic',
+    offering: 'Lucky Dragonite',
+    offeringType: 'Dragon',
+    lookingFor: 'Legendary Birds',
+    lookingForType: 'Flying',
+    status: 'open',
+    postedDate: '2026-05-25',
+  },
+  {
+    id: 3,
+    trainerName: 'BrockRock',
+    team: 'instinct',
+    offering: 'Shadow Metagross',
+    offeringType: 'Steel',
+    lookingFor: 'Shiny Rayquaza',
+    lookingForType: 'Dragon',
+    status: 'open',
+    postedDate: '2026-05-24',
+  },
+  {
+    id: 4,
+    trainerName: 'SerenaXY',
+    team: 'valor',
+    offering: 'Shiny Eevee (any evo)',
+    offeringType: 'Normal',
+    lookingFor: 'Shiny Umbreon',
+    lookingForType: 'Dark',
+    status: 'pending',
+    postedDate: '2026-05-23',
+  },
+  {
+    id: 5,
+    trainerName: 'GaryOak',
+    team: 'mystic',
+    offering: '100% Machamp',
+    offeringType: 'Fighting',
+    lookingFor: 'Shiny Gengar',
+    lookingForType: 'Ghost',
+    status: 'open',
+    postedDate: '2026-05-22',
+  },
+];
+
+const pokemonTypes = [
+  'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Dragon',
+  'Dark', 'Steel', 'Flying', 'Fighting', 'Ghost', 'Normal',
+  'Ice', 'Rock', 'Ground', 'Fairy', 'Poison', 'Bug',
+];
+
+function getTeamColor(team: string): string {
+  switch (team) {
+    case 'mystic': return 'text-blue-400';
+    case 'valor': return 'text-red-400';
+    case 'instinct': return 'text-yellow-400';
+    default: return 'text-gray-400';
+  }
+}
+
+function getTeamBadgeClass(team: string): string {
+  switch (team) {
+    case 'mystic': return 'bg-blue-900 text-blue-300 border-blue-500';
+    case 'valor': return 'bg-red-900 text-red-300 border-red-500';
+    case 'instinct': return 'bg-yellow-900 text-yellow-300 border-yellow-500';
+    default: return 'bg-gray-900 text-gray-300 border-gray-500';
+  }
+}
+
+function getStatusBadge(status: string): { className: string; label: string } {
+  switch (status) {
+    case 'open':
+      return { className: 'bg-green-900 text-green-300 border-green-500', label: 'Open' };
+    case 'pending':
+      return { className: 'bg-yellow-900 text-yellow-300 border-yellow-500', label: 'Pending' };
+    case 'completed':
+      return { className: 'bg-gray-900 text-gray-400 border-gray-500', label: 'Completed' };
+    default:
+      return { className: 'bg-gray-900 text-gray-300 border-gray-500', label: status };
+  }
+}
+
+export default function TradesPage() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [tradeTypeFilter, setTradeTypeFilter] = useState('all');
+  const [pokemonTypeFilter, setPokemonTypeFilter] = useState('all');
+
+  const filteredTrades = sampleTrades.filter((trade) => {
+    const matchesSearch =
+      trade.offering.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      trade.lookingFor.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      trade.trainerName.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesTradeType =
+      tradeTypeFilter === 'all' ||
+      (tradeTypeFilter === 'offering' && trade.offering.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (tradeTypeFilter === 'looking-for' && trade.lookingFor.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    const matchesPokemonType =
+      pokemonTypeFilter === 'all' ||
+      trade.offeringType === pokemonTypeFilter ||
+      trade.lookingForType === pokemonTypeFilter;
+
+    return matchesSearch && matchesTradeType && matchesPokemonType;
+  });
+
+  return (
+    <div className="min-h-screen bg-pixel-darker p-4 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <h1 className="font-pixel text-3xl md:text-4xl text-pixel-gold">Trade Board</h1>
+          <Link
+            href="/trades/new"
+            className="pixel-btn bg-pixel-highlight text-black font-pixel px-4 py-2 hover:opacity-90 transition-opacity"
+          >
+            + Post Trade
+          </Link>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <input
+            type="text"
+            placeholder="Search by Pokemon or trainer..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pixel-input flex-1 bg-pixel-darker border border-pixel-accent text-white px-4 py-2 rounded focus:outline-none focus:border-pixel-gold"
+          />
+          <select
+            value={tradeTypeFilter}
+            onChange={(e) => setTradeTypeFilter(e.target.value)}
+            className="pixel-input bg-pixel-darker border border-pixel-accent text-white px-4 py-2 rounded focus:outline-none focus:border-pixel-gold"
+          >
+            <option value="all">All Types</option>
+            <option value="offering">Offering</option>
+            <option value="looking-for">Looking For</option>
+          </select>
+          <select
+            value={pokemonTypeFilter}
+            onChange={(e) => setPokemonTypeFilter(e.target.value)}
+            className="pixel-input bg-pixel-darker border border-pixel-accent text-white px-4 py-2 rounded focus:outline-none focus:border-pixel-gold"
+          >
+            <option value="all">All Pokemon Types</option>
+            {pokemonTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Trade Listings Grid */}
+        {filteredTrades.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="font-pixel text-xl text-gray-400 mb-4">No trades found</p>
+            <p className="text-gray-500">Try adjusting your search or filters</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredTrades.map((trade) => {
+              const statusBadge = getStatusBadge(trade.status);
+              return (
+                <div key={trade.id} className="pixel-card bg-pixel-darker border border-pixel-accent rounded-lg p-4 hover:border-pixel-gold transition-colors">
+                  {/* Trainer Info */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className={`font-pixel text-sm ${getTeamColor(trade.team)}`}>
+                        {trade.trainerName}
+                      </span>
+                      <span className={`pixel-badge text-xs px-2 py-0.5 rounded border ${getTeamBadgeClass(trade.team)}`}>
+                        {trade.team.charAt(0).toUpperCase() + trade.team.slice(1)}
+                      </span>
+                    </div>
+                    <span className={`pixel-badge text-xs px-2 py-0.5 rounded border ${statusBadge.className}`}>
+                      {statusBadge.label}
+                    </span>
+                  </div>
+

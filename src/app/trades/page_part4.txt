@@ -1,0 +1,26 @@
+﻿        {/* Trade Listings Grid */}
+        {filteredTrades.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="font-pixel text-xl text-gray-400 mb-4">No trades found</p>
+            <p className="text-gray-500">Try adjusting your search or filters</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredTrades.map((trade) => {
+              const statusBadge = getStatusBadge(trade.status);
+              return (
+                <div key={trade.id} className="pixel-card bg-pixel-darker border border-pixel-accent rounded-lg p-4 hover:border-pixel-gold transition-colors">
+                  {/* Trainer Info */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className={`font-pixel text-sm ${getTeamColor(trade.team)}`}>
+                        {trade.trainerName}
+                      </span>
+                      <span className={`pixel-badge text-xs px-2 py-0.5 rounded border ${getTeamBadgeClass(trade.team)}`}>
+                        {trade.team.charAt(0).toUpperCase() + trade.team.slice(1)}
+                      </span>
+                    </div>
+                    <span className={`pixel-badge text-xs px-2 py-0.5 rounded border ${statusBadge.className}`}>
+                      {statusBadge.label}
+                    </span>
+                  </div>

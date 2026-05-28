@@ -1,0 +1,145 @@
+﻿@import 'tailwindcss';
+
+@theme {
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-pokemon-red: #FF1C1C;
+  --color-pokemon-blue: #0075BE;
+  --color-pokemon-yellow: #FFCC00;
+  --color-pokemon-green: #4DAD5B;
+  --color-mystic: #0080FF;
+  --color-valor: #FF0000;
+  --color-instinct: #FFDE00;
+  --color-pixel-dark: #1a1a2e;
+  --color-pixel-darker: #16213e;
+  --color-pixel-accent: #0f3460;
+  --color-pixel-highlight: #e94560;
+  --color-pixel-gold: #f5a623;
+  --color-pixel-green: #27ae60;
+  --color-pixel-purple: #8e44ad;
+}
+
+@layer base {
+  * {
+    image-rendering: pixelated;
+  }
+
+  body {
+    @apply bg-pixel-dark text-white font-sans min-h-screen;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(15, 52, 96, 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-pixel);
+    letter-spacing: -0.5px;
+  }
+}
+
+@layer components {
+  .pixel-border {
+    border: 3px solid;
+    border-image: repeating-linear-gradient(
+      90deg,
+      currentColor 0px,
+      currentColor 3px,
+      transparent 3px,
+      transparent 6px
+    ) 3;
+  }
+
+  .pixel-card {
+    @apply bg-pixel-darker border-2 border-pixel-accent rounded-none p-4;
+    box-shadow: 
+      4px 4px 0px rgba(233, 69, 96, 0.3),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .pixel-btn {
+    @apply px-6 py-3 font-pixel text-xs uppercase tracking-wider;
+    @apply bg-pixel-highlight text-white border-2 border-white;
+    @apply hover:bg-pixel-gold hover:text-pixel-dark;
+    @apply active:translate-x-[2px] active:translate-y-[2px];
+    @apply transition-all duration-100;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .pixel-btn:active {
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .pixel-btn-secondary {
+    @apply pixel-btn bg-pixel-accent border-pixel-highlight;
+    @apply hover:bg-pixel-highlight hover:text-white;
+  }
+
+  .pixel-input {
+    @apply w-full px-4 py-3 bg-pixel-dark border-2 border-pixel-accent;
+    @apply text-white placeholder-gray-500;
+    @apply focus:border-pixel-highlight focus:outline-none;
+    @apply transition-colors duration-200;
+  }
+
+  .pixel-badge {
+    @apply inline-flex items-center px-2 py-1 text-xs font-pixel;
+    @apply border border-current;
+  }
+
+  .team-mystic {
+    @apply text-mystic border-mystic bg-mystic/10;
+  }
+
+  .team-valor {
+    @apply text-valor border-valor bg-valor/10;
+  }
+
+  .team-instinct {
+    @apply text-instinct border-instinct bg-instinct/10;
+  }
+
+  .raid-tier-1 { @apply text-green-400; }
+  .raid-tier-3 { @apply text-yellow-400; }
+  .raid-tier-5 { @apply text-purple-400; }
+  .raid-tier-6 { @apply text-red-400; }
+
+  .glow-animation {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 5px rgba(233, 69, 96, 0.5); }
+    to { box-shadow: 0 0 20px rgba(233, 69, 96, 0.8), 0 0 40px rgba(233, 69, 96, 0.3); }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .pixel-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .pixel-scrollbar::-webkit-scrollbar-track {
+    @apply bg-pixel-dark;
+  }
+
+  .pixel-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-pixel-accent border-2 border-pixel-dark;
+  }
+}
+
+@layer utilities {
+  .text-shadow-pixel {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  }
+
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+}

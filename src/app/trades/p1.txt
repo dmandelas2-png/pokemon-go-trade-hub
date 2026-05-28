@@ -1,0 +1,15 @@
+'use client';
+
+import { useState, useMemo } from 'react';
+
+interface Trade {
+  id: number;
+  trainerName: string;
+  team: string;
+  offering: string;
+  offeringType: string;
+  lookingFor: string;
+  lookingForType: string;
+  status: string;
+  postedDate: string;
+}

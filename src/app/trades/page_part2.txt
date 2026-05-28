@@ -1,0 +1,36 @@
+﻿const pokemonTypes = [
+  'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Dragon',
+  'Dark', 'Steel', 'Flying', 'Fighting', 'Ghost', 'Normal',
+  'Ice', 'Rock', 'Ground', 'Fairy', 'Poison', 'Bug',
+];
+
+function getTeamColor(team: string): string {
+  switch (team) {
+    case 'mystic': return 'text-blue-400';
+    case 'valor': return 'text-red-400';
+    case 'instinct': return 'text-yellow-400';
+    default: return 'text-gray-400';
+  }
+}
+
+function getTeamBadgeClass(team: string): string {
+  switch (team) {
+    case 'mystic': return 'bg-blue-900 text-blue-300 border-blue-500';
+    case 'valor': return 'bg-red-900 text-red-300 border-red-500';
+    case 'instinct': return 'bg-yellow-900 text-yellow-300 border-yellow-500';
+    default: return 'bg-gray-900 text-gray-300 border-gray-500';
+  }
+}
+
+function getStatusBadge(status: string): { className: string; label: string } {
+  switch (status) {
+    case 'open':
+      return { className: 'bg-green-900 text-green-300 border-green-500', label: 'Open' };
+    case 'pending':
+      return { className: 'bg-yellow-900 text-yellow-300 border-yellow-500', label: 'Pending' };
+    case 'completed':
+      return { className: 'bg-gray-900 text-gray-400 border-gray-500', label: 'Completed' };
+    default:
+      return { className: 'bg-gray-900 text-gray-300 border-gray-500', label: status };
+  }
+}

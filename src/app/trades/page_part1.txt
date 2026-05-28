@@ -1,0 +1,74 @@
+﻿'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+
+interface Trade {
+  id: number;
+  trainerName: string;
+  team: 'mystic' | 'valor' | 'instinct';
+  offering: string;
+  offeringType: string;
+  lookingFor: string;
+  lookingForType: string;
+  status: 'open' | 'pending' | 'completed';
+  postedDate: string;
+}
+
+const sampleTrades: Trade[] = [
+  {
+    id: 1,
+    trainerName: 'TrainerAsh',
+    team: 'valor',
+    offering: 'Shiny Charizard',
+    offeringType: 'Fire',
+    lookingFor: 'Shiny Mewtwo',
+    lookingForType: 'Psychic',
+    status: 'open',
+    postedDate: '2026-05-26',
+  },
+  {
+    id: 2,
+    trainerName: 'MistyWater',
+    team: 'mystic',
+    offering: 'Lucky Dragonite',
+    offeringType: 'Dragon',
+    lookingFor: 'Legendary Birds',
+    lookingForType: 'Flying',
+    status: 'open',
+    postedDate: '2026-05-25',
+  },
+  {
+    id: 3,
+    trainerName: 'BrockRock',
+    team: 'instinct',
+    offering: 'Shadow Metagross',
+    offeringType: 'Steel',
+    lookingFor: 'Shiny Rayquaza',
+    lookingForType: 'Dragon',
+    status: 'open',
+    postedDate: '2026-05-24',
+  },
+  {
+    id: 4,
+    trainerName: 'SerenaXY',
+    team: 'valor',
+    offering: 'Shiny Eevee (any evo)',
+    offeringType: 'Normal',
+    lookingFor: 'Shiny Umbreon',
+    lookingForType: 'Dark',
+    status: 'pending',
+    postedDate: '2026-05-23',
+  },
+  {
+    id: 5,
+    trainerName: 'GaryOak',
+    team: 'mystic',
+    offering: '100% Machamp',
+    offeringType: 'Fighting',
+    lookingFor: 'Shiny Gengar',
+    lookingForType: 'Ghost',
+    status: 'open',
+    postedDate: '2026-05-22',
+  },
+];
