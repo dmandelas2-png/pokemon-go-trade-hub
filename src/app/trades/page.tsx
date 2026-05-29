@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 
 const sampleTrades = [
-  { id: '1', pokemon_offered: 'Mewtwo', pokemon_wanted: 'Rayquaza', cp_offered: 3800, cp_wanted: 3600, description: 'Looking for weather boosted', is_shiny: false, is_legendary: true, username: 'TrainerAsh', created_at: '2026-05-28' },
-  { id: '2', pokemon_offered: 'Shiny Charizard', pokemon_wanted: 'Shiny Dragonite', cp_offered: 2800, cp_wanted: 3200, description: 'CD shiny for CD shiny', is_shiny: true, is_legendary: false, username: 'MistyWater', created_at: '2026-05-27' },
-  { id: '3', pokemon_offered: 'Dialga', pokemon_wanted: 'Palkia', cp_offered: 4000, cp_wanted: 3900, description: 'Need for dex completion', is_shiny: false, is_legendary: true, username: 'BrockRock', created_at: '2026-05-26' },
-];
+    { id: '1', pokemon_offered: 'Tapu Fini', pokemon_wanted: 'Tapu Koko', cp_offered: 1632, cp_wanted: 1730, description: 'New from raids - looking for other Tapus. Best friend trade preferred (800 dust)', is_shiny: false, is_legendary: true, username: 'TrainerAsh', created_at: '2026-05-29' },
+    { id: '2', pokemon_offered: 'Shiny Charizard', pokemon_wanted: 'Shiny Dragonite', cp_offered: 2889, cp_wanted: 3792, description: 'CD shiny for CD shiny - registered trade 800 dust at best friends', is_shiny: true, is_legendary: false, username: 'MistyWater', created_at: '2026-05-28' },
+    { id: '3', pokemon_offered: 'Dialga', pokemon_wanted: 'Palkia', cp_offered: 4038, cp_wanted: 3991, description: 'Both registered legendaries - 800 stardust at best friend', is_shiny: false, is_legendary: true, username: 'BrockRock', created_at: '2026-05-27' },
+    { id: '4', pokemon_offered: 'Larvitar', pokemon_wanted: 'Electabuzz', cp_offered: 594, cp_wanted: 1333, description: 'From 1-star raids today - just need dex entry. 100 dust', is_shiny: false, is_legendary: false, username: 'NewTrainer42', created_at: '2026-05-29' },
+  ];
 
 export default function TradesPage() {
   const [trades, setTrades] = useState(sampleTrades);

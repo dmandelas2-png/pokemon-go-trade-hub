@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 
 const sampleRaids = [
-  { id: '1', boss: 'Mega Rayquaza', tier: 'MEGA', location: 'Central Park Gym', max_players: 10, current_players: 6, is_remote: true, description: 'Remote invites available', host: 'TrainerRed', created_at: '2026-05-28' },
-  { id: '2', boss: 'Dialga (Origin)', tier: '5', location: 'Times Square', max_players: 6, current_players: 3, is_remote: false, description: 'Meet at fountain', host: 'GymLeader99', created_at: '2026-05-28' },
-  { id: '3', boss: 'Mega Charizard X', tier: 'MEGA', location: 'Brooklyn Bridge', max_players: 5, current_players: 2, is_remote: true, description: 'Will start when full', host: 'FireBreather', created_at: '2026-05-28' },
-  { id: '4', boss: 'Kartana', tier: '5', location: 'Union Square', max_players: 8, current_players: 8, is_remote: true, description: 'Full! Sorry', host: 'UltraBeast', created_at: '2026-05-28' },
-];
+    { id: '1', boss: 'Tapu Fini', tier: '5', location: 'Central Park Gym', max_players: 6, current_players: 4, is_remote: true, description: 'Remote invites ready - need 2 more', host: 'TrainerRed', created_at: '2026-05-29' },
+    { id: '2', boss: 'Mega Medicham', tier: 'MEGA', location: 'Times Square Pokestop', max_players: 6, current_players: 2, is_remote: true, description: 'Will start at 5 - add 4421 8890 2255', host: 'GymLeader99', created_at: '2026-05-29' },
+    { id: '3', boss: 'Lapras', tier: '3', location: 'Brooklyn Bridge', max_players: 3, current_players: 1, is_remote: false, description: 'Can solo but company welcome', host: 'IceBreaker', created_at: '2026-05-29' },
+    { id: '4', boss: 'Shadow Cresselia', tier: '5', location: 'Union Square', max_players: 6, current_players: 6, is_remote: false, description: 'In-person shadow raid - full', host: 'DarkHunter', created_at: '2026-05-29' },
+  ];
 
 export default function RaidsPage() {
   const [raids, setRaids] = useState(sampleRaids);
