@@ -13,7 +13,7 @@ export default function RaidsPage() {
   const [raids, setRaids] = useState(sampleRaids);
   const [filter, setFilter] = useState('all');
   const [showForm, setShowForm] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
   const [form, setForm] = useState({ boss: '', tier: '5', location: '', max_players: '6', is_remote: false, description: '' });
 
   useEffect(() => {

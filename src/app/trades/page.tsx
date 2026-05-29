@@ -12,7 +12,7 @@ export default function TradesPage() {
   const [trades, setTrades] = useState(sampleTrades);
   const [filter, setFilter] = useState('all');
   const [showForm, setShowForm] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
   const [form, setForm] = useState({ pokemon_offered: '', pokemon_wanted: '', cp_offered: '', cp_wanted: '', description: '', is_shiny: false, is_legendary: false });
 
   useEffect(() => {
